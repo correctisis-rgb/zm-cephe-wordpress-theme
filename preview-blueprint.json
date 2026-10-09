@@ -10,13 +10,12 @@
       "step": "installTheme",
       "themeData": {
         "resource": "git:directory",
-        "url": "https://github.com/USERNAME/zm-cephe-wordpress-theme",
+        "url": "https://github.com/correctisis-rgb/zm-cephe-wordpress-theme",
         "ref": "main",
-        "refType": "branch",
-        "path": "/"
-      }
+        "path": ""
+      },
+      "options": { "activate": true }
     },
-    { "step": "activateTheme", "themeFolderName": "zm-cephe-wordpress-theme" },
     { "step": "wp-cli", "command": "wp post create --post_type=page --post_title='Ana Sayfa' --post_name=anasayfa --post_status=publish" },
     { "step": "wp-cli", "command": "wp post create --post_type=page --post_title='Hakkımızda' --post_name=hakkimizda --post_status=publish" },
     { "step": "wp-cli", "command": "wp post create --post_type=page --post_title='Sistemler' --post_name=sistemler --post_status=publish" },
