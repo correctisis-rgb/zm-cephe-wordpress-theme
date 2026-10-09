@@ -11,4 +11,4 @@
 7. Add completed work from the **Projeler** menu in the dashboard. Add a featured image, project description, location, year, and system. The projects page and home page then use those entries automatically.
 8. Set WordPress's site administration email under **Settings →︎ General**. Contact requests are delivered there using `wp_mail`; configure SMTP on the hosting account if its mail service requires it.
 
-The theme uses PHP templates and WordPress functions. Styles and the small navigation script are in `assets/`. Replace the temporary architectural stock photography with company-owned project photography before publishing.
+Contact form submissions are stored privately in the WordPress dashboard under **Gelen Mesajlar** and also emailed to the site administration address when mail delivery is configured. The theme uses PHP templates and WordPress functions. Styles and the small navigation script are in `assets/`. Replace the temporary architectural stock photography with company-owned project photography before publishing.

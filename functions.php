@@ -37,6 +37,79 @@ function zm_cephe_register_project_type() {
 	) );
 }
 add_action( 'init', 'zm_cephe_register_project_type' );
+
+function zm_cephe_register_message_type() {
+	register_post_type( 'zm_mesaj', array(
+		'labels' => array(
+			'name' => __( 'Gelen Mesajlar', 'zm-cephe' ),
+			'singular_name' => __( 'İletişim mesajı', 'zm-cephe' ),
+			'menu_name' => __( 'Gelen Mesajlar', 'zm-cephe' ),
+			'edit_item' => __( 'Mesajı görüntüle', 'zm-cephe' ),
+			'view_item' => __( 'Mesajı görüntüle', 'zm-cephe' ),
+		),
+		'public' => false,
+		'publicly_queryable' => false,
+		'exclude_from_search' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'show_in_rest' => false,
+		'has_archive' => false,
+		'rewrite' => false,
+		'menu_icon' => 'dashicons-email-alt',
+		'map_meta_cap' => true,
+		'supports' => array( 'title', 'editor' ),
+	) );
+}
+add_action( 'init', 'zm_cephe_register_message_type' );
+
+function zm_cephe_message_columns( $columns ) {
+	return array(
+		'cb' => isset( $columns['cb'] ) ? $columns['cb'] : '<input type="checkbox" />',
+		'title' => __( 'Mesaj', 'zm-cephe' ),
+		'zm_sender' => __( 'Ad Soyad', 'zm-cephe' ),
+		'zm_subject' => __( 'Konu', 'zm-cephe' ),
+		'zm_phone' => __( 'Telefon', 'zm-cephe' ),
+		'zm_email' => __( 'E-posta', 'zm-cephe' ),
+		'date' => __( 'Tarih', 'zm-cephe' ),
+	);
+}
+add_filter( 'manage_zm_mesaj_posts_columns', 'zm_cephe_message_columns' );
+
+function zm_cephe_message_column_content( $column, $post_id ) {
+	$meta_keys = array(
+		'zm_sender' => '_zm_message_name',
+		'zm_subject' => '_zm_message_subject',
+		'zm_phone' => '_zm_message_phone',
+		'zm_email' => '_zm_message_email',
+	);
+	if ( isset( $meta_keys[ $column ] ) ) {
+		$value = get_post_meta( $post_id, $meta_keys[ $column ], true );
+		if ( 'zm_email' === $column && $value ) {
+			echo '<a href="mailto:' . esc_attr( $value ) . '">' . esc_html( $value ) . '</a>';
+		} else {
+			echo esc_html( $value );
+		}
+	}
+}
+add_action( 'manage_zm_mesaj_posts_custom_column', 'zm_cephe_message_column_content', 10, 2 );
+
+function zm_cephe_message_details_box() {
+	add_meta_box( 'zm-message-details', __( 'Gönderen bilgileri', 'zm-cephe' ), 'zm_cephe_message_details_html', 'zm_mesaj', 'side', 'high' );
+}
+add_action( 'add_meta_boxes_zm_mesaj', 'zm_cephe_message_details_box' );
+
+function zm_cephe_message_details_html( $post ) {
+	$details = array(
+		__( 'Ad Soyad', 'zm-cephe' ) => get_post_meta( $post->ID, '_zm_message_name', true ),
+		__( 'Telefon', 'zm-cephe' ) => get_post_meta( $post->ID, '_zm_message_phone', true ),
+		__( 'E-posta', 'zm-cephe' ) => get_post_meta( $post->ID, '_zm_message_email', true ),
+		__( 'Konu', 'zm-cephe' ) => get_post_meta( $post->ID, '_zm_message_subject', true ),
+	);
+	foreach ( $details as $label => $value ) {
+		echo '<p><strong>' . esc_html( $label ) . '</strong><br>' . esc_html( $value ) . '</p>';
+	}
+}
+
 function zm_cephe_flush_rewrites() {
 	 zm_cephe_register_project_type();
 	 flush_rewrite_rules();
@@ -100,11 +173,24 @@ function zm_cephe_handle_contact() {
 	$consent = isset( $_POST['consent'] );
 	$redirect = zm_cephe_page_url( 'iletisim' );
 	if ( ! $name || ! $phone || ! is_email( $email ) || ! $subject || ! $message || ! $consent ) { wp_safe_redirect( add_query_arg( 'contact', 'invalid', $redirect ) ); exit; }
+	$message_id = wp_insert_post( array(
+		'post_type' => 'zm_mesaj',
+		'post_status' => 'private',
+		'post_title' => sprintf( '%s — %s', $name, $subject ),
+		'post_content' => $message,
+	), true );
+	if ( is_wp_error( $message_id ) ) {
+		wp_safe_redirect( add_query_arg( 'contact', 'error', $redirect ) );
+		exit;
+	}
+	foreach ( array( 'name' => $name, 'phone' => $phone, 'email' => $email, 'subject' => $subject ) as $key => $value ) {
+		update_post_meta( $message_id, '_zm_message_' . $key, $value );
+	}
 	$to = get_option( 'admin_email' );
 	$headers = array( 'Reply-To: ' . $name . ' <' . $email . '>' );
 	$body = sprintf( "Ad Soyad: %s\nTelefon: %s\nE-posta: %s\nKonu: %s\n\nMesaj:\n%s", $name, $phone, $email, $subject, $message );
 	$sent = wp_mail( $to, sprintf( '[ZM Cephe] %s', $subject ), $body, $headers );
-	wp_safe_redirect( add_query_arg( 'contact', $sent ? 'sent' : 'error', $redirect ) );
+	wp_safe_redirect( add_query_arg( 'contact', $sent ? 'sent' : 'stored', $redirect ) );
 	exit;
 }
 add_action( 'admin_post_nopriv_zm_cephe_contact', 'zm_cephe_handle_contact' );
