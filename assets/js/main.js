@@ -93,7 +93,16 @@
     'PROJENİZİ KONUŞALIM': 'LET’S TALK ABOUT YOUR PROJECT', 'ZM CEPHE İLE İLETİŞİME GEÇİN': 'CONTACT ZM CEPHE',
     'Birlikte': 'Let’s', 'hayata geçirelim.': 'bring it to life.', 'Projeniz için doğru cephe çözümünü arıyorsanız bize ulaşın.': 'Contact us to discuss the right façade solution for your project.',
     'İLETİŞİME GEÇİN': 'GET IN TOUCH', 'Giydirme cephe': 'Curtain wall', 'Alüminyum doğrama': 'Aluminium joinery', 'Kapı & pencere': 'Doors & windows',
-    'Özel uygulamalar': 'Bespoke applications', 'ZM CEPHE': 'ZM CEPHE', 'İLETİŞİM': 'CONTACT'
+    'Özel uygulamalar': 'Bespoke applications', 'ZM CEPHE': 'ZM CEPHE', 'İLETİŞİM': 'CONTACT',
+    'RAKAMLARLA ZM CEPHE': 'ZM CEPHE IN NUMBERS', 'Güven veren': 'Built on', 'birikim.': 'experience.',
+    'Çalışma arkadaşımız': 'Team members', 'Yıllık tecrübe': 'Years of experience', 'Tamamlanan proje': 'Completed projects',
+    'ÇALIŞMA ARKADAŞLARIMIZ': 'OUR TEAM', 'Güçlü fikirler,': 'Strong ideas,', 'iyi ekiplerle.': 'with good teams.',
+    'Her projede mimari ekip, işveren ve uygulama paydaşlarıyla aynı hedefe odaklanıyoruz. Açık iletişim ve teknik koordinasyonla fikri sahada karşılığı olan çözüme dönüştürüyoruz.': 'On every project, we align the design team, client and delivery partners around a shared goal. Clear communication and technical coordination turn ideas into buildable solutions.',
+    'Çalışma anlayışımız': 'How we work', 'ORTAK AKIL / GÜÇLÜ UYGULAMA': 'SHARED THINKING / STRONG DELIVERY',
+    'TASARIMDAN SAHAYA': 'FROM DESIGN TO SITE', 'BİRLİKTE': 'TOGETHER', '01 / PROJE EKİBİ': '01 / PROJECT TEAM',
+    'Aynı hedefte buluşuruz.': 'Aligned around one goal.', 'Beklentileri, mimari dili ve uygulama koşullarını birlikte değerlendiririz.': 'We assess expectations, architectural language and site conditions together.',
+    '02 / TEKNİK DETAY': '02 / TECHNICAL DETAIL', 'Çözümü birlikte netleştiririz.': 'We define the solution together.', 'Sistem kararlarını performans, estetik ve saha gerçekleriyle ele alırız.': 'We consider system choices alongside performance, aesthetics and site realities.',
+    '03 / SAHA KOORDİNASYONU': '03 / SITE COORDINATION', 'Planı özenle hayata geçiririz.': 'We deliver the plan with care.', 'İşin her aşamasında açık iletişimle uygulama sürecini takip ederiz.': 'We follow the installation process with clear communication at every stage.'
   };
 
   const setLanguage = (language) => {
@@ -167,6 +176,7 @@
   const revealGroups = [
     '.home-highlights > *', '.home-system-intro > *', '.home-system-card',
     '.home-about-image', '.home-about-copy', '.belief-head', '.belief-copy',
+    '.home-stats .stats-heading', '.home-stats .home-stat', '.home-team .team-visual', '.home-team .team-content > *', '.team-principles article',
     '.belief-image', '.service-teasers article', '.home-projects .section-top',
     '.home-projects .project-card', '.home-project-placeholder', '.home-reference > *',
     '.cta-content > *', '.inner-hero-content', '.inner-intro > *', '.service-row',
@@ -181,7 +191,7 @@
       item.setAttribute('data-reveal', '');
       const siblings = item.parentElement ? Array.from(item.parentElement.children).filter((child) => child.hasAttribute('data-reveal')) : [];
       item.style.setProperty('--reveal-delay', `${Math.min(siblings.indexOf(item), 5) * 90}ms`);
-      if (item.classList.contains('home-system-card') || item.classList.contains('portfolio-card')) item.setAttribute('data-reveal', 'scale');
+      if (item.classList.contains('home-system-card') || item.classList.contains('portfolio-card') || item.classList.contains('team-visual')) item.setAttribute('data-reveal', 'scale');
       if (item.classList.contains('home-about-image') || item.classList.contains('belief-image')) item.classList.add('reveal-image');
     });
 
@@ -194,6 +204,39 @@
       });
     }, { threshold: 0.14, rootMargin: '0px 0px -7% 0px' });
     revealItems.forEach((item) => observer.observe(item));
+  }
+
+  const counters = document.querySelectorAll('[data-count-up]');
+  const animateCounter = (counter) => {
+    if (counter.dataset.counted === 'true') return;
+    counter.dataset.counted = 'true';
+    const target = Math.max(0, Number.parseInt(counter.dataset.countUp || '0', 10));
+    if (reduceMotion || target < 1) {
+      counter.textContent = new Intl.NumberFormat(document.documentElement.lang || 'tr-TR').format(target);
+      return;
+    }
+    const start = performance.now();
+    const duration = 1500;
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      counter.textContent = new Intl.NumberFormat(document.documentElement.lang || 'tr-TR').format(Math.round(target * eased));
+      if (progress < 1) window.requestAnimationFrame(tick);
+    };
+    window.requestAnimationFrame(tick);
+  };
+  if (counters.length && !reduceMotion && 'IntersectionObserver' in window) {
+    const counterObserver = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          currentObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach((counter) => counterObserver.observe(counter));
+  } else {
+    counters.forEach(animateCounter);
   }
 
   const parallaxImages = document.querySelectorAll('.hero-img, .belief-image img, .home-about-image img, .reference-image');

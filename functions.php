@@ -75,6 +75,16 @@ function zm_cephe_customizer( $wp_customize ) {
 		$wp_customize->add_setting( 'zm_' . $key, array( 'sanitize_callback' => 'sanitize_text_field' ) );
 		$wp_customize->add_control( 'zm_' . $key, array( 'label' => $label, 'section' => 'zm_contact', 'type' => 'text' ) );
 	}
+	$wp_customize->add_section( 'zm_company_stats', array( 'title' => __( 'ZM Cephe rakamları', 'zm-cephe' ), 'priority' => 36 ) );
+	$stats = array(
+		'team' => __( 'Çalışma arkadaşı sayısı', 'zm-cephe' ),
+		'experience' => __( 'Yıllık tecrübe', 'zm-cephe' ),
+		'projects' => __( 'Tamamlanan proje sayısı', 'zm-cephe' ),
+	);
+	foreach ( $stats as $key => $label ) {
+		$wp_customize->add_setting( 'zm_stat_' . $key, array( 'default' => 0, 'sanitize_callback' => 'absint' ) );
+		$wp_customize->add_control( 'zm_stat_' . $key, array( 'label' => $label, 'section' => 'zm_company_stats', 'type' => 'number', 'input_attrs' => array( 'min' => 0, 'step' => 1 ) ) );
+	}
 }
 add_action( 'customize_register', 'zm_cephe_customizer' );
 
