@@ -25,7 +25,7 @@ $lang = isset( $_COOKIE['zm_cephe_lang'] ) && 'en' === sanitize_key( wp_unslash(
 		<a href="<?php echo esc_url( zm_cephe_page_url( 'iletisim' ) ); ?>">İletişim</a>
 		<div class="nav-group language-group"><button class="language-current" aria-expanded="false"><?php echo 'en' === $lang ? 'EN' : 'TR'; ?> <span>⌄</span></button><div class="nav-submenu language-submenu"><button type="button" data-set-language="tr">Türkçe</button><button type="button" data-set-language="en">English</button></div></div>
 	</nav>
-	<a class="header-contact" href="<?php echo esc_url( zm_cephe_page_url( 'iletisim' ) ); ?>">Proje talebi <b>↗</b></a>
+	<a class="header-contact" href="<?php echo esc_url( zm_cephe_page_url( 'iletisim' ) ); ?>">Proje talebi <b>↗︎</b></a>
 	<button class="menu" aria-label="Menüyü aç" aria-expanded="false"><i></i><i></i></button>
 </header>
 <div class="language-gate" id="language-gate" role="dialog" aria-modal="true" aria-labelledby="language-title" aria-hidden="true"><div class="language-panel"><span class="language-mark">ZM <i>CEPHE</i></span><span class="language-eyebrow">WELCOME / HOŞ GELDİNİZ</span><h2 id="language-title">Dil seçimi<br><em>Language selection</em></h2><p>Devam etmek için dilinizi seçin.<br>Select your preferred language to continue.</p><div class="language-options"><button type="button" data-set-language="tr"><span>TR</span> Türkçe <b aria-hidden="true"></b></button><button type="button" data-set-language="en"><span>EN</span> English <b aria-hidden="true"></b></button></div><small>Seçiminiz bu cihazda hatırlanır. / Your choice will be remembered on this device.</small></div></div>

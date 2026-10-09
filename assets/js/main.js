@@ -64,7 +64,7 @@
     'Form e-posta gönderimi WordPress sunucunuzun e-posta ayarına bağlıdır.': 'Form email delivery depends on your WordPress server email configuration.',
     'KONUM': 'LOCATION', 'Adresimiz': 'Our address', 'ZM CEPHE / PROJE': 'ZM CEPHE / PROJECT', 'YER': 'LOCATION', 'TARİH': 'DATE', 'SİSTEM': 'SYSTEM',
     'SİZİN PROJENİZ': 'YOUR PROJECT', 'Birlikte': 'Let’s', 'tasarlayalım.': 'design together.', 'Tüm hakları saklıdır.': 'All rights reserved.',
-    'Alüminyum Cephe Sistemleri & Mimarlık': 'Aluminium Façade Systems & Architecture', 'Yukarı ↑': 'Back to top ↑',
+    'Alüminyum Cephe Sistemleri & Mimarlık': 'Aluminium Façade Systems & Architecture', 'Yukarı ↑︎': 'Back to top ↑︎',
     'ZM CEPHE · ALÜMİNYUM CEPHE SİSTEMLERİ': 'ZM CEPHE · ALUMINIUM FAÇADE SYSTEMS', 'MİMARİNİN': 'ARCHITECTURE’S', 'GÜCÜNÜ': 'POTENTIAL', 'HİSSEDİN': 'REALIZED',
     'SİSTEMLERİMİZİ KEŞFEDİN': 'EXPLORE OUR SYSTEMS', 'AŞAĞI İN': 'SCROLL DOWN', 'AŞAĞI KAYDIR': 'SCROLL DOWN',
     'ZM CEPHE YAKLAŞIMI': 'THE ZM CEPHE APPROACH', 'Proje odaklı': 'Project-focused', 'çözümler': 'solutions', 'Detaylı teknik': 'Detailed technical',
@@ -86,7 +86,7 @@
     '04 / TESLİM': '04 / DELIVERY', 'Sonuca': 'Reaching the', 'birlikte ulaşıyoruz.': 'finish together.', 'Süreç boyunca iletişimde kalarak uygulamanın tamamlanmasını takip ediyoruz.': 'We stay in touch throughout and follow the installation through to completion.',
     'PROJE SEÇKİSİ': 'PROJECT PORTFOLIO', 'Mimariyle': 'In step with', 'birlikte.': 'architecture.',
     'Farklı ölçek ve ihtiyaçlara göre tasarlanan cephe uygulamalarını inceleyin.': 'Explore façade applications designed for different scales and needs.',
-    'Projelerimiz': 'Our projects', 'yakında burada.': 'coming soon.', 'PROJELERİ GÖRÜN ↗': 'VIEW PROJECTS ↗', 'PROJE SÜRECİMİZ ↗': 'OUR PROCESS ↗',
+    'Projelerimiz': 'Our projects', 'yakında burada.': 'coming soon.', 'PROJELERİ GÖRÜN ↗︎': 'VIEW PROJECTS ↗︎', 'PROJE SÜRECİMİZ ↗︎': 'OUR PROCESS ↗︎',
     'Tüm projeleri görün': 'View all projects', 'BU İŞİ SEVİYORUZ': 'WE LOVE WHAT WE DO', 'Güç ve': 'Strength meets', 'estetik.': 'aesthetics.',
     'ZM Cephe olarak dış cephe ve mimari sistemler alanında, tasarım ve detay çözümünden uygulamaya kadar her aşamada proje ortaklarımızın yanında yer alıyoruz.': 'At ZM Cephe, we support our project partners at every stage of façade and architectural systems work, from design and detailing to installation.',
     'Her projede doğru sistemi birlikte belirliyor; yapının karakterini yansıtan, işlevli ve uzun ömürlü çözümler için çalışıyoruz.': 'We select the right system together for every project and create functional, durable solutions that reflect the character of each building.',
@@ -258,7 +258,7 @@
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
     const cursor = document.createElement('div');
     cursor.className = 'drag-cursor';
-    cursor.innerHTML = '<span>İNCELE</span><b>↗</b>';
+    cursor.innerHTML = '<span>İNCELE</span><b>↗︎</b>';
     document.body.appendChild(cursor);
     document.querySelectorAll('.home-system-grid, .home-projects .project-grid, .portfolio-grid').forEach((area) => {
       area.addEventListener('pointerenter', () => cursor.classList.add('active'));
