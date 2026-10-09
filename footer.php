@@ -1,0 +1,12 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
+<footer class="footer">
+	<div class="footer-main">
+		<a class="logo foot-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="logo-symbol">ZM</span><span class="logo-name">CEPHE <small>ALÜMİNYUM CEPHE SİSTEMLERİ &amp; MİMARLIK</small></span></a>
+		<div><span class="foot-label"><?php esc_html_e( 'SİSTEMLER', 'zm-cephe' ); ?></span><a href="<?php echo esc_url( zm_cephe_page_url( 'sistemler' ) ); ?>#giydirme"><?php esc_html_e( 'Giydirme cephe', 'zm-cephe' ); ?></a><a href="<?php echo esc_url( zm_cephe_page_url( 'sistemler' ) ); ?>#dograma"><?php esc_html_e( 'Alüminyum doğrama', 'zm-cephe' ); ?></a><a href="<?php echo esc_url( zm_cephe_page_url( 'sistemler' ) ); ?>#kapi-pencere"><?php esc_html_e( 'Kapı & pencere', 'zm-cephe' ); ?></a><a href="<?php echo esc_url( zm_cephe_page_url( 'sistemler' ) ); ?>#ozel"><?php esc_html_e( 'Özel uygulamalar', 'zm-cephe' ); ?></a></div>
+		<div><span class="foot-label"><?php esc_html_e( 'ZM CEPHE', 'zm-cephe' ); ?></span><a href="<?php echo esc_url( zm_cephe_page_url( 'hakkimizda' ) ); ?>"><?php esc_html_e( 'Hakkımızda', 'zm-cephe' ); ?></a><a href="<?php echo esc_url( zm_cephe_page_url( 'projeler' ) ); ?>"><?php esc_html_e( 'Projeler', 'zm-cephe' ); ?></a><a href="<?php echo esc_url( zm_cephe_page_url( 'iletisim' ) ); ?>"><?php esc_html_e( 'İletişim ↗', 'zm-cephe' ); ?></a></div>
+		<div><span class="foot-label"><?php esc_html_e( 'İLETİŞİM', 'zm-cephe' ); ?></span><?php if ( get_theme_mod( 'zm_phone' ) ) : ?><a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', get_theme_mod( 'zm_phone' ) ) ); ?>"><?php echo esc_html( get_theme_mod( 'zm_phone' ) ); ?></a><?php endif; ?><?php if ( get_theme_mod( 'zm_email' ) ) : ?><a href="mailto:<?php echo esc_attr( sanitize_email( get_theme_mod( 'zm_email' ) ) ); ?>"><?php echo esc_html( get_theme_mod( 'zm_email' ) ); ?></a><?php endif; ?><?php if ( get_theme_mod( 'zm_instagram' ) ) : ?><a href="<?php echo esc_url( get_theme_mod( 'zm_instagram' ) ); ?>" target="_blank" rel="noopener">Instagram ↗</a><?php endif; ?></div>
+	</div>
+	<div class="footer-bottom"><span>© <?php echo esc_html( gmdate( 'Y' ) ); ?> ZM Cephe. <?php esc_html_e( 'Tüm hakları saklıdır.', 'zm-cephe' ); ?></span><span><?php esc_html_e( 'Alüminyum Cephe Sistemleri & Mimarlık', 'zm-cephe' ); ?></span><a href="#top"><?php esc_html_e( 'Yukarı ↑', 'zm-cephe' ); ?></a></div>
+</footer>
+<?php wp_footer(); ?>
+</body></html>

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "siteOptions": {
+    "blogname": "ZM Cephe",
+    "blogdescription": "Alüminyum Cephe Sistemleri & Mimarlık"
+  },
+  "steps": [
+    { "step": "setSiteLanguage", "language": "tr_TR" },
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "git:directory",
+        "url": "https://github.com/USERNAME/zm-cephe-wordpress-theme",
+        "ref": "main",
+        "refType": "branch",
+        "path": "/"
+      }
+    },
+    { "step": "activateTheme", "themeFolderName": "zm-cephe-wordpress-theme" },
+    { "step": "wp-cli", "command": "wp post create --post_type=page --post_title='Ana Sayfa' --post_name=anasayfa --post_status=publish" },
+    { "step": "wp-cli", "command": "wp post create --post_type=page --post_title='Hakkımızda' --post_name=hakkimizda --post_status=publish" },
+    { "step": "wp-cli", "command": "wp post create --post_type=page --post_title='Sistemler' --post_name=sistemler --post_status=publish" },
+    { "step": "wp-cli", "command": "wp post create --post_type=page --post_title='Projeler' --post_name=projeler --post_status=publish" },
+    { "step": "wp-cli", "command": "wp post create --post_type=page --post_title='İletişim' --post_name=iletisim --post_status=publish" },
+    { "step": "wp-cli", "command": "wp option update show_on_front page" },
+    { "step": "runPHP", "code": "require '/wordpress/wp-load.php'; $page = get_page_by_path('anasayfa'); if ($page) { update_option('page_on_front', $page->ID); }" }
+  ]
+}
