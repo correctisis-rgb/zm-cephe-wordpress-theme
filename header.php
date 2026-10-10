@@ -15,7 +15,7 @@ $lang = isset( $_COOKIE['zm_cephe_lang'] ) && 'en' === sanitize_key( wp_unslash(
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <header class="header">
-	<a class="logo" href="<?php echo esc_url( $home ); ?>" aria-label="ZM Cephe"><span class="logo-symbol">ZM</span><span class="logo-name">CEPHE <small>ALÜMİNYUM CEPHE SİSTEMLERİ &amp; MİMARLIK</small></span></a>
+	<a class="logo" href="<?php echo esc_url( $home ); ?>" aria-label="ZM Alüminyum Cephe Sistemleri"><img class="brand-logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/zm-aluminyum-cephe-logo.png' ); ?>" alt="ZM Alüminyum Cephe Sistemleri" width="641" height="131"></a>
 	<nav class="nav" aria-label="Ana menü">
 		<a href="<?php echo esc_url( $home ); ?>">Anasayfa</a>
 		<div class="nav-group"><a href="<?php echo esc_url( zm_cephe_page_url( 'hakkimizda' ) ); ?>">Kurumsal <span>⌄</span></a><div class="nav-submenu"><a href="<?php echo esc_url( zm_cephe_page_url( 'hakkimizda' ) ); ?>">Hakkımızda</a><a href="<?php echo esc_url( zm_cephe_page_url( 'hakkimizda' ) ); ?>#calisma-anlayisimiz">Çalışma Anlayışımız</a></div></div>
