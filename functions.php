@@ -110,6 +110,56 @@ function zm_cephe_message_details_html( $post ) {
 	}
 }
 
+function zm_cephe_register_testimonial_type() {
+	register_post_type( 'zm_yorum', array(
+		'labels' => array(
+			'name' => __( 'Müşteri Yorumları', 'zm-cephe' ),
+			'singular_name' => __( 'Müşteri yorumu', 'zm-cephe' ),
+			'menu_name' => __( 'Müşteri Yorumları', 'zm-cephe' ),
+			'add_new_item' => __( 'Yeni müşteri yorumu ekle', 'zm-cephe' ),
+			'edit_item' => __( 'Müşteri yorumunu düzenle', 'zm-cephe' ),
+		),
+		'public' => false,
+		'publicly_queryable' => false,
+		'exclude_from_search' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'show_in_rest' => false,
+		'has_archive' => false,
+		'rewrite' => false,
+		'menu_icon' => 'dashicons-format-quote',
+		'map_meta_cap' => true,
+		'supports' => array( 'title', 'editor' ),
+	) );
+}
+add_action( 'init', 'zm_cephe_register_testimonial_type' );
+
+function zm_cephe_testimonial_rating_box() {
+	add_meta_box( 'zm-testimonial-rating', __( 'Değerlendirme', 'zm-cephe' ), 'zm_cephe_testimonial_rating_html', 'zm_yorum', 'side', 'default' );
+}
+add_action( 'add_meta_boxes_zm_yorum', 'zm_cephe_testimonial_rating_box' );
+
+function zm_cephe_testimonial_rating_html( $post ) {
+	wp_nonce_field( 'zm_save_testimonial', 'zm_testimonial_nonce' );
+	$rating = absint( get_post_meta( $post->ID, '_zm_testimonial_rating', true ) );
+	if ( ! $rating ) { $rating = 5; }
+	echo '<label for="zm-testimonial-rating">' . esc_html__( 'Yıldız (1–5)', 'zm-cephe' ) . '</label> ';
+	echo '<select id="zm-testimonial-rating" name="zm_testimonial_rating">';
+	for ( $star = 1; $star <= 5; $star++ ) {
+		echo '<option value="' . esc_attr( $star ) . '" ' . selected( $rating, $star, false ) . '>' . esc_html( $star ) . '</option>';
+	}
+	echo '</select><p class="description">' . esc_html__( 'Başlık alanına müşterinin adını, içerik alanına gerçek yorumunu yazın. Yorum yalnızca yayımlandığında sitede görünür.', 'zm-cephe' ) . '</p>';
+}
+
+function zm_cephe_save_testimonial_rating( $post_id ) {
+	if ( ! isset( $_POST['zm_testimonial_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['zm_testimonial_nonce'] ) ), 'zm_save_testimonial' ) ) { return; }
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
+	if ( ! current_user_can( 'edit_post', $post_id ) || ! isset( $_POST['zm_testimonial_rating'] ) ) { return; }
+	$rating = min( 5, max( 1, absint( wp_unslash( $_POST['zm_testimonial_rating'] ) ) ) );
+	update_post_meta( $post_id, '_zm_testimonial_rating', $rating );
+}
+add_action( 'save_post_zm_yorum', 'zm_cephe_save_testimonial_rating' );
+
 function zm_cephe_flush_rewrites() {
 	 zm_cephe_register_project_type();
 	 flush_rewrite_rules();

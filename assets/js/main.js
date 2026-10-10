@@ -16,6 +16,9 @@
   }
 
   const translations = {
+    'MÜŞTERİ YORUMLARI': 'CLIENT TESTIMONIALS', 'Memnuniyetiniz bizim için önemlidir.': 'Your satisfaction matters to us.',
+    'Her projede güvene ve açık iletişime önem veriyoruz. Müşterilerimizin deneyimleri, birlikte ürettiğimiz işlerin en değerli parçasıdır.': 'We value trust and clear communication in every project. Our clients’ experiences are the most meaningful part of the work we create together.',
+    'Yorumlar arasında geçiş': 'Browse testimonials',
     'Anasayfa': 'Home', 'Kurumsal': 'Company', 'Hakkımızda': 'About Us', 'Çalışma Anlayışımız': 'Our Approach',
     'Sistemler': 'Systems', 'Giydirme Cephe': 'Curtain Wall', 'Giydirme Cephe Sistemleri': 'Curtain Wall Systems',
     'Alüminyum Doğrama': 'Aluminium Joinery', 'Kapı & Pencere': 'Doors & Windows', 'Kapı & pencere': 'Doors & windows',
@@ -173,12 +176,24 @@
   }, { passive: true });
   updateHeader();
 
+  document.querySelectorAll('[data-testimonial-carousel]').forEach((carousel) => {
+    const slides = Array.from(carousel.querySelectorAll('[data-testimonial-slide]'));
+    const dots = Array.from(carousel.querySelectorAll('[data-testimonial-dot]'));
+    if (slides.length < 2 || dots.length !== slides.length) return;
+    const showSlide = (activeIndex) => {
+      const index = (activeIndex + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => { slide.hidden = slideIndex !== index; });
+      dots.forEach((dot, dotIndex) => dot.setAttribute('aria-current', String(dotIndex === index)));
+    };
+    dots.forEach((dot, index) => dot.addEventListener('click', () => showSlide(index)));
+  });
+
   const revealGroups = [
     '.home-highlights > *', '.home-system-intro > *', '.home-system-card',
     '.home-about-image', '.home-about-copy', '.belief-head', '.belief-copy',
     '.home-stats .stats-heading', '.home-stats .home-stat', '.home-team .team-visual', '.home-team .team-content > *', '.team-principles article',
     '.belief-image', '.service-teasers article', '.home-projects .section-top',
-    '.home-projects .project-card', '.home-project-placeholder', '.home-reference > *',
+    '.home-projects .project-card', '.home-project-placeholder', '.testimonial-heading > *', '.testimonial-card', '.home-reference > *',
     '.cta-content > *', '.inner-hero-content', '.inner-intro > *', '.service-row',
     '.value-grid article', '.process-grid article', '.portfolio-card', '.contact-info', '.contact-form'
   ].join(',');
