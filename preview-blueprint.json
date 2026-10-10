@@ -79,6 +79,18 @@
     },
     {
       "step": "wp-cli",
+      "command": "wp post create --post_type=zm_yorum --post_title='Örnek Müşteri 01' --post_name=ornek-musteri-01 --post_content='Örnek yorum: Proje sürecinde iletişimin açık ve düzenli ilerlemesi bizim için çok değerliydi. Cephe çözümleri binamızın mimarisiyle uyumlu oldu.' --post_status=publish"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post create --post_type=zm_yorum --post_title='Örnek Müşteri 02' --post_name=ornek-musteri-02 --post_content='Örnek yorum: İhtiyaçlarımız dikkatle değerlendirildi, malzeme ve uygulama detayları anlaşılır biçimde paylaşıldı. Çalışma sürecinden memnun kaldık.' --post_status=publish"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post create --post_type=zm_yorum --post_title='Örnek Müşteri 03' --post_name=ornek-musteri-03 --post_content='Örnek yorum: Planlama ve saha koordinasyonu boyunca ekibin yaklaşımı güven verdi. Ortaya çıkan sonucun uzun ömürlü ve işlevsel olmasını önemsiyoruz.' --post_status=publish"
+    },
+    {
+      "step": "wp-cli",
       "command": "wp user meta update 1 show_admin_bar_front 0"
     },
     {
