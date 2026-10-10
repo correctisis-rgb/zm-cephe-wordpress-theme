@@ -160,4 +160,5 @@ body{background:#fff}
 .testimonial-dots button{width:10px;height:10px;padding:0;border:0;border-radius:50%;background:#fff;cursor:pointer;transition:background .2s,box-shadow .2s,transform .2s}
 .testimonial-dots button[aria-current="true"]{background:#a93243;box-shadow:0 0 0 5px #a9324330;transform:scale(.85)}
 .testimonial-dots button:focus-visible{outline:2px solid #a93243;outline-offset:5px}
+.approach-copy{max-width:920px;margin-top:-8px}.approach-copy p{max-width:850px;font-size:14px;line-height:1.95;margin-bottom:19px}
 @media(max-width:620px){.home-testimonials{padding:72px 4% 62px}.testimonial-heading{margin-bottom:28px}.testimonial-heading h2{font-size:38px;margin:18px 0 14px}.testimonial-heading>p{font-size:15px;line-height:1.75}.testimonial-card{min-height:0;padding:28px 24px 30px}.testimonial-quote{height:54px;font-size:82px}.testimonial-stars{gap:7px;margin:8px 0 23px;font-size:24px}.testimonial-card blockquote{font-size:18px;line-height:1.7}.testimonial-author{margin-top:28px;padding-top:20px;font-size:16px}}
