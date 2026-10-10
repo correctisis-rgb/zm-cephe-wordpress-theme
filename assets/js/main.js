@@ -60,7 +60,7 @@
     'Projeniz hakkında konuşalım': 'Let’s discuss your project', 'YENİ PROJENİZ': 'YOUR NEXT PROJECT', 'Sıradaki proje': 'Let the next project', 'sizin olsun.': 'be yours.', 'Projenizi paylaşın': 'Tell us about it',
     'ZM CEPHE / İLETİŞİM': 'ZM CEPHE / CONTACT', 'Projenizi': 'Your project', 'BİZE ULAŞIN': 'GET IN TOUCH', 'Birlikte': 'Let’s get', 'başlayalım.': 'started.',
     'Projenizi ve ihtiyaçlarınızı bize anlatın. Ekibimiz sizinle iletişime geçsin.': 'Tell us about your project and what you need. Our team will get back to you.',
-    'TELEFON': 'PHONE', 'E-POSTA': 'EMAIL', 'ADRES': 'ADDRESS', 'Ad Soyad': 'Full name', 'Adınız ve soyadınız': 'Your name',
+    'TELEFON': 'PHONE', 'E-POSTA': 'EMAIL', 'YETKİLİ': 'CONTACT PERSON', 'İNTERNET SİTESİ': 'WEBSITE', 'ADRES': 'ADDRESS', 'Ad Soyad': 'Full name', 'Adınız ve soyadınız': 'Your name',
     'Telefon': 'Phone', 'E-posta': 'Email', 'Proje konusu': 'Project topic', 'Bir konu seçin': 'Select a topic', 'Giydirme cephe sistemleri': 'Curtain wall systems',
     'Alüminyum doğrama': 'Aluminium joinery', 'Kapı ve pencere sistemleri': 'Door and window systems', 'Proje iş birliği': 'Project collaboration', 'Diğer': 'Other',
     'Mesajınız': 'Your message', 'Projenizden kısaca bahsedin': 'Briefly tell us about your project',

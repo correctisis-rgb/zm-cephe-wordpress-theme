@@ -1,7 +1,7 @@
 {
   "$schema": "https://playground.wordpress.net/blueprint-schema.json",
   "siteOptions": {
-    "blogname": "ZM Cephe",
+    "blogname": "ZM Alüminyum Cephe Sistemleri",
     "blogdescription": "Alüminyum Cephe Sistemleri & Mimarlık"
   },
   "steps": [
@@ -20,6 +20,30 @@
       "options": {
         "activate": true
       }
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp theme mod set zm_person \"Recep KARAMANLI\""
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp theme mod set zm_phone \"0541 711 35 37\""
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp theme mod set zm_email \"recep@zmcephe.com\""
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp theme mod set zm_website \"https://www.zmcephe.com\""
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp theme mod set zm_address \"Cami Mh. Göktaş Sk. No:43/1 Darıca/KOCAELİ\""
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp option update admin_email recep@zmcephe.com"
     },
     {
       "step": "wp-cli",

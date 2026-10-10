@@ -193,9 +193,9 @@ add_action( 'save_post_zm_proje', 'zm_cephe_save_project_fields' );
 
 function zm_cephe_customizer( $wp_customize ) {
 	$wp_customize->add_section( 'zm_contact', array( 'title' => __( 'ZM Cephe iletişim bilgileri', 'zm-cephe' ), 'priority' => 35 ) );
-	$fields = array( 'phone' => __( 'Telefon', 'zm-cephe' ), 'email' => __( 'E-posta', 'zm-cephe' ), 'address' => __( 'Adres', 'zm-cephe' ), 'whatsapp' => __( 'WhatsApp bağlantısı', 'zm-cephe' ), 'instagram' => __( 'Instagram bağlantısı', 'zm-cephe' ), 'linkedin' => __( 'LinkedIn bağlantısı', 'zm-cephe' ) );
+	$fields = array( 'person' => __( 'Yetkili kişi', 'zm-cephe' ), 'phone' => __( 'Telefon', 'zm-cephe' ), 'email' => __( 'E-posta', 'zm-cephe' ), 'website' => __( 'Web sitesi', 'zm-cephe' ), 'address' => __( 'Adres', 'zm-cephe' ), 'whatsapp' => __( 'WhatsApp bağlantısı', 'zm-cephe' ), 'instagram' => __( 'Instagram bağlantısı', 'zm-cephe' ), 'linkedin' => __( 'LinkedIn bağlantısı', 'zm-cephe' ) );
 	foreach ( $fields as $key => $label ) {
-		$wp_customize->add_setting( 'zm_' . $key, array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_setting( 'zm_' . $key, array( 'sanitize_callback' => 'website' === $key ? 'esc_url_raw' : 'sanitize_text_field' ) );
 		$wp_customize->add_control( 'zm_' . $key, array( 'label' => $label, 'section' => 'zm_contact', 'type' => 'text' ) );
 	}
 	$wp_customize->add_section( 'zm_company_stats', array( 'title' => __( 'ZM Cephe rakamları', 'zm-cephe' ), 'priority' => 36 ) );
