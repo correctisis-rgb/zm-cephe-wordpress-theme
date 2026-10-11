@@ -79,15 +79,43 @@
     },
     {
       "step": "wp-cli",
-      "command": "wp post create --post_type=zm_yorum --post_title='Örnek Müşteri 01' --post_name=ornek-musteri-01 --post_content='Örnek yorum: Proje sürecinde iletişimin açık ve düzenli ilerlemesi bizim için çok değerliydi. Cephe çözümleri binamızın mimarisiyle uyumlu oldu.' --post_status=publish"
+      "command": "wp post create --post_type=zm_yorum --post_title='Caner A.' --post_name=zm-musteri-01 --post_content='Dış cephe uygulamamızdan çok memnun kaldık. İşçilik kalitesi ve profesyonel yaklaşımlarıyla güven veren bir firma. Tavsiye ederiz.' --post_status=publish"
     },
     {
       "step": "wp-cli",
-      "command": "wp post create --post_type=zm_yorum --post_title='Örnek Müşteri 02' --post_name=ornek-musteri-02 --post_content='Örnek yorum: İhtiyaçlarımız dikkatle değerlendirildi, malzeme ve uygulama detayları anlaşılır biçimde paylaşıldı. Çalışma sürecinden memnun kaldık.' --post_status=publish"
+      "command": "wp post create --post_type=zm_yorum --post_title='Elif K.' --post_name=zm-musteri-02 --post_content='Baştan sona titizlikle yürütülen bir çalışma oldu. Hem iletişimlerinden hem de ortaya çıkan sonuçtan memnun kaldık.' --post_status=publish"
     },
     {
       "step": "wp-cli",
-      "command": "wp post create --post_type=zm_yorum --post_title='Örnek Müşteri 03' --post_name=ornek-musteri-03 --post_content='Örnek yorum: Planlama ve saha koordinasyonu boyunca ekibin yaklaşımı güven verdi. Ortaya çıkan sonucun uzun ömürlü ve işlevsel olmasını önemsiyoruz.' --post_status=publish"
+      "command": "wp post create --post_type=zm_yorum --post_title='Burak Y.' --post_name=zm-musteri-03 --post_content='İşlerini gerçekten özenli yapan bir ekip. Zamanında teslimat ve kaliteli işçilik konusunda başarılılar.' --post_status=publish"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post create --post_type=zm_yorum --post_title='Zeynep T.' --post_name=zm-musteri-04 --post_content='Binamızın dış cephesi tam istediğimiz gibi oldu. Süreç boyunca gösterdikleri ilgi ve çözüm odaklı yaklaşımları için teşekkür ederiz.' --post_status=publish"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post create --post_type=zm_yorum --post_title='Onur S.' --post_name=zm-musteri-05 --post_content='Kaliteli malzeme, düzgün işçilik ve profesyonel hizmet arayanlara gönül rahatlığıyla tavsiye ederiz.' --post_status=publish"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post create --post_type=zm_yorum --post_title='Selin D.' --post_name=zm-musteri-06 --post_content='Projemiz boyunca her aşamada ilgili ve yardımcı oldular. Ortaya çıkan işçilikten oldukça memnun kaldık.' --post_status=publish"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post create --post_type=zm_yorum --post_title='Emre Ç.' --post_name=zm-musteri-07 --post_content='Dış cephe konusunda güvenilir ve işinin ehli bir firma. Detaylara gösterdikleri özen gerçekten takdire değer.' --post_status=publish"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post create --post_type=zm_yorum --post_title='Merve Ö.' --post_name=zm-musteri-08 --post_content='Hem estetik hem de uygulama kalitesi açısından beklentilerimizi karşıladılar. Emeği geçen tüm ekibe teşekkür ederiz.' --post_status=publish"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post create --post_type=zm_yorum --post_title='Kaan G.' --post_name=zm-musteri-09 --post_content='Sürecin başından sonuna kadar iletişimleri iyiydi. İşlerini planlı ve profesyonel şekilde yürüttüler. Başarılarının devamını dileriz.' --post_status=publish"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post create --post_type=zm_yorum --post_title='Gamze E.' --post_name=zm-musteri-10 --post_content='ZM Cephe ile çalışmaktan memnun kaldık. Kaliteli uygulamaları ve müşteri odaklı yaklaşımlarıyla güzel bir iş ortaya çıkardılar.' --post_status=publish"
     },
     {
       "step": "wp-cli",
