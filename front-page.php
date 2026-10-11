@@ -53,7 +53,7 @@
 			<div class="testimonial-carousel" data-testimonial-carousel aria-roledescription="carousel">
 				<div class="testimonial-slides">
 				<?php $slide_index = 0; while ( $testimonials->have_posts() ) : $testimonials->the_post(); $rating = absint( get_post_meta( get_the_ID(), '_zm_testimonial_rating', true ) ); if ( ! $rating ) { $rating = 5; } $rating = min( 5, $rating ); ?>
-					<article class="testimonial-card" data-testimonial-slide aria-roledescription="slide" aria-label="<?php echo esc_attr( sprintf( '%1$d / %2$d', $slide_index + 1, $testimonial_count ) ); ?>" <?php echo 0 === $slide_index ? '' : 'hidden'; ?>>
+					<article class="testimonial-card" data-testimonial-slide aria-roledescription="slide" aria-label="<?php echo esc_attr( sprintf( '%1$d / %2$d', $slide_index + 1, $testimonial_count ) ); ?>">
 						<span class="testimonial-quote" aria-hidden="true">“</span>
 						<div class="testimonial-stars" role="img" aria-label="<?php echo esc_attr( sprintf( __( '%d yıldız', 'zm-cephe' ), $rating ) ); ?>"><?php for ( $star = 1; $star <= 5; $star++ ) : ?><span class="<?php echo $star <= $rating ? 'is-filled' : ''; ?>" aria-hidden="true">★︎</span><?php endfor; ?></div>
 						<blockquote><?php echo wp_kses_post( wpautop( get_the_content() ) ); ?></blockquote>
@@ -61,7 +61,7 @@
 					</article>
 				<?php $slide_index++; endwhile; wp_reset_postdata(); ?>
 				</div>
-				<?php if ( $testimonial_count > 1 ) : ?><div class="testimonial-dots" role="group" aria-label="<?php esc_attr_e( 'Yorumlar arasında geçiş', 'zm-cephe' ); ?>"><?php for ( $dot = 0; $dot < $testimonial_count; $dot++ ) : ?><button type="button" data-testimonial-dot aria-label="<?php echo esc_attr( sprintf( __( '%d. yorumu göster', 'zm-cephe' ), $dot + 1 ) ); ?>" aria-current="<?php echo 0 === $dot ? 'true' : 'false'; ?>"></button><?php endfor; ?></div><?php endif; ?>
+				<?php if ( $testimonial_count > 1 ) : ?><div class="testimonial-dots" data-testimonial-dots role="group" aria-label="<?php esc_attr_e( 'Yorumlar arasında geçiş', 'zm-cephe' ); ?>"></div><?php endif; ?>
 			</div>
 		</div>
 	</section>

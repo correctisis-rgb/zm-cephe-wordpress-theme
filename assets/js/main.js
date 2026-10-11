@@ -182,14 +182,38 @@
 
   document.querySelectorAll('[data-testimonial-carousel]').forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll('[data-testimonial-slide]'));
-    const dots = Array.from(carousel.querySelectorAll('[data-testimonial-dot]'));
-    if (slides.length < 2 || dots.length !== slides.length) return;
-    const showSlide = (activeIndex) => {
-      const index = (activeIndex + slides.length) % slides.length;
-      slides.forEach((slide, slideIndex) => { slide.hidden = slideIndex !== index; });
-      dots.forEach((dot, dotIndex) => dot.setAttribute('aria-current', String(dotIndex === index)));
+    const dotsContainer = carousel.querySelector('[data-testimonial-dots]');
+    if (slides.length < 2 || !dotsContainer) return;
+    let pageSize = 0;
+    let activePage = 0;
+    let dots = [];
+    const getPageSize = () => window.innerWidth <= 620 ? 1 : window.innerWidth <= 980 ? 2 : 3;
+    const showPage = (requestedPage) => {
+      const pageCount = Math.ceil(slides.length / pageSize);
+      activePage = (requestedPage + pageCount) % pageCount;
+      slides.forEach((slide, slideIndex) => { slide.hidden = Math.floor(slideIndex / pageSize) !== activePage; });
+      dots.forEach((dot, dotIndex) => dot.setAttribute('aria-current', String(dotIndex === activePage)));
     };
-    dots.forEach((dot, index) => dot.addEventListener('click', () => showSlide(index)));
+    const configureCarousel = () => {
+      const firstVisibleIndex = activePage * Math.max(pageSize, 1);
+      const nextPageSize = getPageSize();
+      if (pageSize === nextPageSize && dots.length) return;
+      pageSize = nextPageSize;
+      activePage = Math.floor(firstVisibleIndex / pageSize);
+      const pageCount = Math.ceil(slides.length / pageSize);
+      dotsContainer.replaceChildren();
+      dots = Array.from({ length: pageCount }, (_, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `${index + 1}. ${document.documentElement.lang.startsWith('en') ? 'testimonial group' : 'yorum grubunu göster'}`);
+        dot.addEventListener('click', () => showPage(index));
+        dotsContainer.appendChild(dot);
+        return dot;
+      });
+      showPage(activePage);
+    };
+    configureCarousel();
+    window.addEventListener('resize', configureCarousel, { passive: true });
   });
 
   const revealGroups = [
