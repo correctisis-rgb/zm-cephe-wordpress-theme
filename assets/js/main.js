@@ -184,6 +184,7 @@
     const slides = Array.from(carousel.querySelectorAll('[data-testimonial-slide]'));
     const dotsContainer = carousel.querySelector('[data-testimonial-dots]');
     if (slides.length < 2 || !dotsContainer) return;
+    const slidesTrack = carousel.querySelector('.testimonial-slides');
     let pageSize = 0;
     let activePage = 0;
     let dots = [];
@@ -214,6 +215,24 @@
     };
     configureCarousel();
     window.addEventListener('resize', configureCarousel, { passive: true });
+
+    // Let visitors browse testimonial groups with a touch swipe or mouse drag.
+    if (slidesTrack) {
+      let pointerStart = null;
+      slidesTrack.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0 || event.target.closest('button, a')) return;
+        pointerStart = { x: event.clientX, y: event.clientY };
+      });
+      slidesTrack.addEventListener('pointerup', (event) => {
+        if (!pointerStart) return;
+        const deltaX = event.clientX - pointerStart.x;
+        const deltaY = event.clientY - pointerStart.y;
+        pointerStart = null;
+        if (Math.abs(deltaX) < 45 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+        showPage(activePage + (deltaX < 0 ? 1 : -1));
+      });
+      slidesTrack.addEventListener('pointercancel', () => { pointerStart = null; });
+    }
   });
 
   const revealGroups = [
