@@ -9,6 +9,7 @@
 5. Add the real company contact details under **Appearance →︎ Customize →︎ ZM Cephe iletişim bilgileri**.
 6. Add verified figures under **Appearance →︎ Customize →︎ ZM Cephe rakamları**. Empty values stay hidden; populated figures animate into view as visitors scroll.
 7. Add completed work from the **Projeler** menu in the dashboard. Add a featured image, project description, location, year, and system. The projects page and home page then use those entries automatically.
+9. The **Sistemler** page supports editor blocks below the built-in system sections. Use the **+** button to add an Image or Gallery block; uploaded images appear on the public page after saving.
 8. Set WordPress's site administration email under **Settings →︎ General**. Contact requests are delivered there using `wp_mail`; configure SMTP on the hosting account if its mail service requires it.
 
 ## Connecting the production domain
