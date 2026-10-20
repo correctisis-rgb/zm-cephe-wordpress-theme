@@ -25,6 +25,11 @@ function zm_cephe_page_url( $slug ) {
 	return $page ? get_permalink( $page ) : home_url( '/' . trim( $slug, '/' ) . '/' );
 }
 
+function zm_cephe_website_url() {
+	$website = get_theme_mod( 'zm_website' );
+	return $website ? $website : home_url( '/' );
+}
+
 function zm_cephe_register_project_type() {
 	register_post_type( 'zm_proje', array(
 		'labels' => array( 'name' => __( 'Projeler', 'zm-cephe' ), 'singular_name' => __( 'Proje', 'zm-cephe' ), 'add_new_item' => __( 'Yeni proje ekle', 'zm-cephe' ), 'edit_item' => __( 'Projeyi düzenle', 'zm-cephe' ) ),

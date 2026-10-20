@@ -35,7 +35,7 @@
     },
     {
       "step": "wp-cli",
-      "command": "wp theme mod set zm_website \"https://www.zmcephe.com\""
+      "command": "wp theme mod set zm_website \"https://zmcephemimarlik.com\""
     },
     {
       "step": "wp-cli",
